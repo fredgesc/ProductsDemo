@@ -1,0 +1,27 @@
+<div class="card shadow">
+    <div class="card-header border-0">
+        <h3 class="mb-0">Products</h3>
+    </div>
+    <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products$ | async">
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.stock}}</td>
+                    <td>
+                        <button routerLink="/products/{{product.id}}" class="btn btn-primary mx-2">Edit</button>
+                        <button (click)="removeProduct(product.id ?? 0)" class="btn btn-danger">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

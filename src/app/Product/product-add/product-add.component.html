@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="formProduct">
+            <div class="mb-2">
+                <label class="form-label" for="">Product Name:</label>
+                <input type="text" [formControl]="name" class="form-control" placeholder="Name..." />
+                <div class="alert alert-danger mt-2" [hidden]="name.valid || name.pristine">
+                    <span *ngIf="name.errors?.['required']">Name is required</span>
+                    <span *ngIf="!name.errors?.['pattern'] && name.errors?.['minlength']">Name must have at least {{name.errors?.['minlength']['requiredLength']}} characters</span>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="">Price:</label>
+                <input type="number" [formControl]="price" class="form-control" placeholder="Price..." />
+                <div class="alert alert-danger mt-2" [hidden]="price.valid || price.pristine">
+                    <span *ngIf="price.errors?.['required']">Price is required</span>
+                    <span *ngIf="price.errors?.['min'] || price.errors?.['max']">Price must be between $0.01 and $100,000.00</span>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="">Stock:</label>
+                <input type="number" [formControl]="stock" class="form-control" placeholder="Stock...." />
+                <div class="alert alert-danger mt-2" [hidden]="stock.valid || stock.pristine">
+                    <span *ngIf="stock.errors?.['required']">Stock is required</span>
+                    <span *ngIf="stock.errors?.['min']">Stock must greater than 0</span>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-4" [disabled]="formProduct.invalid">Submit</button>
+        </form>
+    </div>
+</div>
